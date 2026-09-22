@@ -354,7 +354,7 @@ body:before{content:"";position:fixed;inset:-20%;pointer-events:none;background:
 </div>
 <section id="about" class="intro-section reveal"><div class="eyebrow">О проекте</div><h2>Не просто каталог работ.</h2><p>DesignHub задуман как место, куда хочется возвращаться. Работа здесь становится началом общения: можно открыть кейс, посмотреть автора, сохранить проект, найти услугу или позже связаться с дизайнером.</p></section>
 <section id="features" class="intro-section reveal"><div class="eyebrow">Возможности</div><h2>Работы. Люди. Движение.</h2><div class="info-grid"><div class="info-card"><b>Canvas</b><span>Подробное пространство проекта: автор, идея, инструменты, палитра и связанные работы.</span></div><div class="info-card"><b>Design Radar</b><span>Персональная зона интересов, которая позже сможет обучаться на действиях пользователя.</span></div><div class="info-card"><b>Pulse</b><span>Живой поток активности сообщества вместо обычной статичной витрины.</span></div></div></section>
-<section id="creator" class="intro-section reveal"><div class="eyebrow">Создатели</div><h2>Проект строится с нуля.</h2><p>Уже работают аккаунты, база данных, профили, публикации и сообщения. DesignHub постепенно превращается в полноценную среду для дизайнеров.</p><div class="creator"><div class="avatar">D</div><div><b>Создатель DesignHub</b><small>Designer / Developer</small></div><div class="socials"><a href="#" onclick="fakeSocial('Telegram');return false">Telegram</a><a href="#" onclick="fakeSocial('YouTube');return false">YouTube</a></div></div></section>
+<section id="creator" class="intro-section reveal"><div class="eyebrow">Команда DesignHUB</div><h2>Проект строится с нуля.</h2><p>Уже работают аккаунты, база данных, профили, публикации и сообщения. DesignHUB постепенно превращается в полноценную среду для дизайнеров.</p><div class="creator"><div class="avatar">D</div><div><b>Команда DesignHUB</b><small>Design community</small></div><div class="socials"><a href="https://t.me/NewsDesignHUB" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://t.me/SpacemeCode" target="_blank" rel="noopener noreferrer">Создатель</a></div></div></section>
 <div style="text-align:center;padding:10px 24px 90px;position:relative;z-index:2"><button class="btn" onclick="openApp()">Войти в DesignHub →</button></div>
 </section>
 
@@ -513,20 +513,7 @@ let likedWorkIds=new Set();
 let followingIds=new Set();
 let socialNotifications=[];
 
-const defaultWorks=[
- {id:'w1',title:'North Visual Identity',author:'Maks',category:'Branding',art:'art-1',tools:'Photoshop · Illustrator',format:'Brand identity',description:'Минималистичная визуальная система для современного бренда.'},
- {id:'w2',title:'Form / Type Study',author:'Lera',category:'Typography',art:'art-2',tools:'InDesign · Illustrator',format:'Type study',description:'Эксперимент с формой, ритмом и типографикой.'},
- {id:'w3',title:'Object 03',author:'Niko',category:'3D',art:'art-3',tools:'Blender · Photoshop',format:'3D visual',description:'Концептуальный 3D-объект и атмосферная композиция.'},
- {id:'w4',title:'Type System',author:'Alex',category:'Typography',art:'art-4',tools:'Figma · Illustrator',format:'Visual system',description:'Типографическая система для цифрового продукта.'},
- {id:'w5',title:'Digital Atmosphere',author:'Vika',category:'UI/UX',art:'art-5',tools:'Figma · After Effects',format:'Interface',description:'Концепция интерфейса с акцентом на атмосферу.'},
- {id:'w6',title:'Archive Identity',author:'Dima',category:'Branding',art:'art-6',tools:'Illustrator · InDesign',format:'Identity',description:'Айдентика с контрастной журнальной эстетикой.'},
- {id:'w7',title:'Motion Objects',author:'Sasha',category:'Motion',art:'art-7',tools:'After Effects · Cinema 4D',format:'Motion design',description:'Серия динамических объектов и motion-переходов.'},
- {id:'w8',title:'New Era',author:'Roma',category:'Web Design',art:'art-8',tools:'Figma · HTML · CSS',format:'Website',description:'Веб-концепция для нового цифрового проекта.'},
- {id:'w9',title:'Visual System 2026',author:'Ilya',category:'Branding',art:'art-9',tools:'Figma · Illustrator',format:'System',description:'Современная система визуальных элементов.'},
- {id:'w10',title:'Noise',author:'Mira',category:'Illustration',art:'art-10',tools:'Photoshop · Procreate',format:'Illustration',description:'Абстрактная иллюстрация с экспериментальным шумом.'},
- {id:'w11',title:'Blue Object',author:'Denis',category:'3D',art:'art-11',tools:'Blender · Photoshop',format:'3D study',description:'Исследование света и материала в 3D.'},
- {id:'w12',title:'Signal',author:'Nora',category:'Art Direction',art:'art-12',tools:'Photoshop · Figma',format:'Art direction',description:'Арт-дирекшн для цифровой кампании.'}
-];
+const defaultWorks=[];
 
 const categories=['Branding','UI/UX','Typography','3D','Motion','Web Design','Illustration','Art Direction'];
 
@@ -905,10 +892,10 @@ function renderHome(){
      <div class="metric"><small>Статус</small><b style="font-size:20px">${currentUser?'ONLINE':'GUEST'}</b><span>${currentUser?'аккаунт подключён':'войдите для полного режима'}</span></div>
    </div>
 
-   <section class="section section-modern">
+   ${topWorks.length?`<section class="section section-modern">
      <div class="section-head"><h3>Избранное сегодня</h3><span>CURATED / 01</span></div>
      <div class="grid">${topWorks.map((x,i)=>workCard(x,i)).join('')}</div>
-   </section>
+   </section>`:`<section class="section section-modern"><div class="panel empty"><div class="mark">＋</div><h3>Работ пока нет</h3><p>Будь первым — опубликуй свою работу в DesignHUB.</p><button class="btn" onclick="openPublishModal()">Стать первым →</button></div></section>`}
 
    <section class="section section-modern">
      <div class="section-head"><h3>Выбери направление</h3><span>EXPLORE</span></div>
@@ -940,17 +927,17 @@ function renderHome(){
      <div class="designer-row">${designerData().slice(0,3).map(designerCard).join('')}</div>
    </section>
 
-   <section class="section section-modern">
+   ${visibleWorks.length>4?`<section class="section section-modern">
      <div class="section-head"><h3>Ещё можно посмотреть</h3><span>DISCOVER MORE</span></div>
      <div class="grid">${visibleWorks.slice(4,8).map((x,i)=>`<div class="work feature">${workCard(x,works.indexOf(x)).replace('<article class="work"','<article class="work"')}</div>`).join('')}</div>
-   </section>
+   </section>`:''}
  </div>`;
  observeReveals();
 }
 function renderWorks(){
- $('#page').innerHTML=`<div class="welcome"><div><div class="eyebrow">DISCOVER</div><h2>Работы.</h2><p>Открывай проекты, а не просто картинки.</p></div><button class="btn" onclick="openPublishModal()">＋ Опубликовать</button></div>
- <div class="chip-row">${['Все','Branding','UI/UX','Typography','3D','Motion','Web Design','Illustration','Art Direction'].map((x,i)=>`<button class="chip ${i===0?'active':''}" onclick="filterCategory('${escapeAttr(x)}',this)">${x}</button>`).join('')}</div>
- <div id="worksGrid" class="grid">${works.map((x,i)=>workCard(x,i)).join('')}</div>`;
+ const empty=!works.length;
+ $('#page').innerHTML=`<div class="welcome"><div><div class="eyebrow">DISCOVER</div><h2>Работы.</h2><p>${empty?'Пока здесь пусто. Стань первым автором.':'Открывай проекты, а не просто картинки.'}</p></div><button class="btn" onclick="openPublishModal()">＋ Опубликовать</button></div>
+ ${empty?`<div class="panel empty"><div class="mark">＋</div><h3>Работ пока нет</h3><p>Будь первым — опубликуй свою работу в DesignHUB.</p><button class="btn" onclick="openPublishModal()">Стать первым →</button></div>`:`<><div class="chip-row">${['Все','Branding','UI/UX','Typography','3D','Motion','Web Design','Illustration','Art Direction'].map((x,i)=>`<button class="chip ${i===0?'active':''}" onclick="filterCategory('${escapeAttr(x)}',this)">${x}</button>`).join('')}</div><div id="worksGrid" class="grid">${works.map((x,i)=>workCard(x,i)).join('')}</div></>`}`;
 }
 function filterCategory(category,button){$$('.chip').forEach(x=>x.classList.remove('active'));button.classList.add('active');const items=category==='Все'?works:works.filter(x=>x.category===category);$('#worksGrid').innerHTML=items.length?items.map(x=>workCard(x,works.indexOf(x))).join(''):`<div class="panel" style="grid-column:1/-1"><h3>Пока пусто</h3><p style="color:var(--muted)">В этой категории ещё нет работ.</p></div>`}
 function renderDesigners(){$('#page').innerHTML=`<div class="welcome"><div><div class="eyebrow">PEOPLE</div><h2>Дизайнеры.</h2><p>Авторы, идеи и направления.</p></div></div><div class="designer-row">${designerData().map(designerCard).join('')}</div>`}
